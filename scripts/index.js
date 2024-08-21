@@ -9,6 +9,7 @@ function createCard(name, link, deleteCard) {
   const placesItem = cardTemplate.querySelector('.places__item').cloneNode(true);
   placesItem.querySelector('.card__title').textContent = name;
   placesItem.querySelector('.card__image').src = link;
+  placesItem.querySelector('.card__image').setAttribute('alt', 'фото природы');
   const deleteButton = placesItem.querySelector('.card__delete-button');
   deleteButton.addEventListener('click', deleteCard);
   return placesItem;
