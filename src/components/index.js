@@ -1,3 +1,4 @@
+
 const cardTemplate = document.querySelector("#card-template").content;
 const placesList = document.querySelector('.places__list');
 
@@ -20,3 +21,4 @@ function createCard(name, link, deleteCard) {
     const placesItem = eventTarget.closest('.places__item');
     placesItem.remove();
  }
+
