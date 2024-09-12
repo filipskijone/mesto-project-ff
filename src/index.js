@@ -7,7 +7,7 @@ import { placesList } from './components/cards';
 
 
 ///////////////////////////////////
-
+const popupContent = document.querySelector('.popup__content');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupTypeNewCard = document.querySelector('.popup_type_new-card');
 const imagePopup = document.querySelector('.popup_type_image');
@@ -17,18 +17,28 @@ document.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('profile__edit-button')) {
     popupTypeEdit.classList.add('popup_is-opened');
     document.addEventListener('keydown', buttonCheck);
+    this.documentElement.addEventListener('click', closePopupOverlay)
   }
   else if (evt.target.classList.contains('profile__add-button')){
     popupTypeNewCard.classList.add('popup_is-opened');
     document.addEventListener('keydown', buttonCheck);
+    this.documentElement.addEventListener('click', closePopupOverlay)
   }
   else if (evt.target.classList.contains('card__image')){
     imagePopup.classList.add('popup_is-opened')
-    document.addEventListener('keydown', buttonCheck)
+    document.addEventListener('keydown', buttonCheck);
+    this.documentElement.addEventListener('click', closePopupOverlay)
   }
 });
 
-// ???? как создать нажатие на оверлей
+//  нажатие на оверлей
+function closePopupOverlay(evt) {
+  if (!evt.target.classList.contains('popup__content')) {
+    popupTypeEdit.classList.remove('popup_is-opened'),
+    popupTypeNewCard.classList.remove('popup_is-opened');
+    imagePopup.classList.remove('popup_is-opened');
+  }
+}
 
 //проверка на esc
 function buttonCheck(evt) {
