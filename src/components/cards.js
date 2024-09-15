@@ -1,4 +1,4 @@
-import { openImgPopup } from "..";
+import { openImgPopup } from './modal';
 export const initialCards = [
   {
     name: "Архыз",

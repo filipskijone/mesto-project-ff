@@ -2,60 +2,16 @@ import './styles/index.css';
 import { deleteCard, initialCards } from './components/cards';
 import { createCard } from './components/cards';
 import { placesList } from './components/cards';
-
+import { openImgPopup } from './components/modal.js';
 
 
 
 ///////////////////////////////////
-const popupContent = document.querySelector('.popup__content');
-const popupTypeEdit = document.querySelector('.popup_type_edit');
-const popupTypeNewCard = document.querySelector('.popup_type_new-card');
-const imagePopup = document.querySelector('.popup_type_image');
+export const popupTypeEdit = document.querySelector('.popup_type_edit');
+export const popupTypeNewCard = document.querySelector('.popup_type_new-card');
+export const imagePopup = document.querySelector('.popup_type_image');
 
-// listener для всех попапов
-document.addEventListener('click', function (evt) {
-  if (evt.target.classList.contains('profile__edit-button')) {
-    popupTypeEdit.classList.add('popup_is-opened');
-    document.addEventListener('keydown', buttonCheck);
-    this.documentElement.addEventListener('click', closePopupOverlay)
-  }
-  else if (evt.target.classList.contains('profile__add-button')){
-    popupTypeNewCard.classList.add('popup_is-opened');
-    document.addEventListener('keydown', buttonCheck);
-    this.documentElement.addEventListener('click', closePopupOverlay)
-  }
-  else if (evt.target.classList.contains('card__image')){
-    imagePopup.classList.add('popup_is-opened')
-    document.addEventListener('keydown', buttonCheck);
-    this.documentElement.addEventListener('click', closePopupOverlay)
-  }
-});
 
-//  нажатие на оверлей
-function closePopupOverlay(evt) {
-  if (!evt.target.classList.contains('popup__content')) {
-    popupTypeEdit.classList.remove('popup_is-opened'),
-    popupTypeNewCard.classList.remove('popup_is-opened');
-    imagePopup.classList.remove('popup_is-opened');
-  }
-}
-
-//проверка на esc
-function buttonCheck(evt) {
-  const popupElement = document.querySelector('.popup_is-opened');
-  if (evt.key === "Escape") {
-    popupElement.classList.remove('popup_is-opened');
-  }
-}
-//закрытие попапа на кнопку
-document.addEventListener('click', closePopup);
-function closePopup(evt) {
-  if (evt.target.classList.contains('popup__close')) {
-    popupTypeEdit.classList.remove('popup_is-opened'),
-    popupTypeNewCard.classList.remove('popup_is-opened');
-    imagePopup.classList.remove('popup_is-opened');
-  }
-}
 
 // форма редактирования профиля
 const formElement = document.forms.edit_profile;
@@ -90,14 +46,4 @@ function addCard(evt) {
   place.value = '';
   cardLink.value = '';
   popupTypeNewCard.classList.remove('popup_is-opened')
-}
-
-// попап картинки карточки
-export function openImgPopup(name, link) {
-  const img = imagePopup.querySelector('.popup__image');
-  const caption = imagePopup.querySelector('.popup__caption');
-
-  imagePopup.classList.add('popup_is-opened');
-  img.src = link;
-  caption.textContent = name;
-}
+};
